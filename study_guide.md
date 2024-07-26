@@ -6,3 +6,17 @@
     - https://launchschool.com/books/javascript/read/flow_control
     - Similar, but different than `case` statements
     - Fall-throughs
+- Increment/Decrement Operator
+    - ++/--
+    - Before variable increments, but returns old value
+    - After variable increments and returns new value
+    - Should be avoided, use +=/-= instead
+- do loop
+    - Always performs loop once
+- continue
+    - Same as `next` in Ruby
+- forEach
+    - same as `#each`
+- Arrow functions
+- Template Literal
+    - Using `` to interpolate values into a string
