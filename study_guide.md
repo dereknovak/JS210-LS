@@ -20,3 +20,6 @@
 - Arrow functions
 - Template Literal
     - Using `` to interpolate values into a string
+- `push` returns the new array length
+- `filter`
+    - Similar to `#select`
