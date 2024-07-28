@@ -1,3 +1,10 @@
+- Data Types
+    - Primitives
+    - Objects
+        - Simple Objects
+        - Arrays
+        - Dates
+        - Functions
 - Nullish Coalescing Operator
     - https://launchschool.com/books/javascript/read/flow_control
     - `??`
@@ -23,3 +30,18 @@
 - `push` returns the new array length
 - `filter`
     - Similar to `#select`
+- Element reference with the bracket notation
+    - `arr[1][3]`
+- Objects
+    - Same as Ruby hashes
+    - To reference a string, can either use
+        - dot notation
+            - `person.name`
+        - bracket notation
+            - person['name']
+        - Can also use these notations for assignment
+    - `delete` keyword to delete a key/value
+- Iterate over an Object
+    - `for (let property in variable) {}`
+    - Iterates over the prototypes as well
+- `keys` and `values` methods are static
