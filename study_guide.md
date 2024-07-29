@@ -45,3 +45,7 @@
     - `for (let property in variable) {}`
     - Iterates over the prototypes as well
 - `keys` and `values` methods are static
+- `for/of`
+    - Better to use this with an array
+    - https://launchschool.com/books/javascript/read/more_stuff
+- `?.` returns the entire chain as `undefined` if the value is nullish
