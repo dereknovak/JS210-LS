@@ -49,3 +49,10 @@
     - Better to use this with an array
     - https://launchschool.com/books/javascript/read/more_stuff
 - `?.` returns the entire chain as `undefined` if the value is nullish
+    - "Optional Chaining"
+    - https://launchschool.com/books/javascript/read/more_stuff
+- regex
+    - `test` returns `true` or `false`
+    - `match` returns matched values or `null`
+    - Weird problem in book...look into this
+    
