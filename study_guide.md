@@ -55,4 +55,16 @@
     - `test` returns `true` or `false`
     - `match` returns matched values or `null`
     - Weird problem in book...look into this
-    
+- Bracket notation **is an operator**, not a method
+- Modulo Operator
+    - Not a modulo, but a *remainder* operator
+    - 10 % -3 === -2
+- When coerced into a number, `true` is `1` and `false` is `0`.
+- Addition operator converts to string if one operand is a string
+    - All other operators will always convert to integer.
+- Arguments are not only the specified values at a function's invocation, but also the parameters used within the function's body
+- If JS cannot find a variable within a block scope that it is attempting to reassign, it will automatically create a new global variable (NOT GOOD!!)
+- Look into this again:
+    - In this section, we were explicit to refer to the anonymous function assigned to a variable. In the wild, however, many developers refer to anonymous functions by the name of the variable to which it is assigned. For instance, instead of saying the "anonymous function assigned to foo returns..", we can instead say the "function foo returns..". While at Launch School and in job interviews, use the former, more precise, wording. You can also leave out "anonymous" unless it is relevant.
+    - https://launchschool.com/lessons/7cd4abf4/assignments/5cb67110
+- Learn the differences between a function declaration/expression
