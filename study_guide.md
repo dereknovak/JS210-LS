@@ -68,3 +68,6 @@
     - In this section, we were explicit to refer to the anonymous function assigned to a variable. In the wild, however, many developers refer to anonymous functions by the name of the variable to which it is assigned. For instance, instead of saying the "anonymous function assigned to foo returns..", we can instead say the "function foo returns..". While at Launch School and in job interviews, use the former, more precise, wording. You can also leave out "anonymous" unless it is relevant.
     - https://launchschool.com/lessons/7cd4abf4/assignments/5cb67110
 - Learn the differences between a function declaration/expression
+- When referencing with `myOtherWord = myWord`, both variables point to an object of the same value **but not the same object**
+- Look up *reference type* (question 3)
+    - https://launchschool.com/lessons/7cd4abf4/assignments/23776776
