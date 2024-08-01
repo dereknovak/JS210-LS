@@ -3,16 +3,13 @@ let a = 'outer';
 
 function testScope() {
   let a = 'inner';
-  console.lgo(a);
+  console.log(a);
 }
 
 console.log(a);
 testScope();
 console.log(a);
 ```
-outer
-inner
-outer
 
 This code snippet will log `outer`, `inner`, and `outer` on separate lines.
 
