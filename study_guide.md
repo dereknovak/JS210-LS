@@ -71,3 +71,18 @@
 - When referencing with `myOtherWord = myWord`, both variables point to an object of the same value **but not the same object**
 - Look up *reference type* (question 3)
     - https://launchschool.com/lessons/7cd4abf4/assignments/23776776
+
+##########################
+
+SPOT session with JD
+
+- PFA
+    - Primary method that needs to be invoked
+    - Presupply it with arguments
+    - 3 components
+        - Primary
+        - Applicator
+        - Generator
+            - Supply all additional non-supplied arguments
+    - Method passing with fewer arguments than what you need in the future
+- Create list of legal/idiomatic naming conventions
