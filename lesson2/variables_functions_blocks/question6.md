@@ -16,7 +16,7 @@ console.log(capitalizedWord);
 console.log(exclaimedWord);
 ```
 
-This example will log `hello!!!`, `He`, and `hello!!!` to the console on separate lines.
+This example will log `hello!!!`, `Hello`, and `hello!!!` to the console on separate lines.
 
 On line 9, global variable `word` is declared and initialized to the string value `'hello'`. On line 10, the defined `capitalize` function is invoked and gets passed `word` as an argument; however, `capitalize` does not accept any arguments, so this value is ignored. Within then function, the `toUpperCase` method is called on the first character of global variable `word`, returning `'H'`. The `slice` method is then called on `word`, returning the new string `'ello'`. The function then returns the new string `'Hello'` using string concatenation and assigns it to the global variable `capitalizedWord`.
 
