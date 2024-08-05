@@ -23,18 +23,19 @@ isPrime
 */
 
 function isPrime(num) {
-  if ([0, 1].includes(num)) return false;
-
+  if (num <= 1 || (num > 2 && num % 2 === 0)) return false;
+  
   for (let divisor = 3; divisor <= num / 2; divisor += 2) {
     if (num % divisor === 0) return false;
   }
-
+  
   return true;
 }
 
 console.log(isPrime(1) === false);   // false
 console.log(isPrime(2) === true);   // true
 console.log(isPrime(3) === true);   // true
+console.log(isPrime(8) === false);
 console.log(isPrime(43) === true);  // true
 console.log(isPrime(55) === false);  // false
 console.log(isPrime(0) === false);   // false
