@@ -18,7 +18,7 @@ Data Structure:
 
 */
 
-const ALPHABET = 'abcdefghijklmnopqrstuvwxyz'
+const ALPHABET = 'abcdefghijklmnopqrstuvwxyz';
 
 function isUpperCase(letter) {
   return letter.match(/[A-Z]/);
@@ -37,7 +37,7 @@ function rot13(string) {
     for (let i = 0; i <= ALPHABET.length - 1; i++) {
       let asciiCode = ALPHABET[i].charCodeAt(0);
 
-      if (i < 13) {
+      if (i < ALPHABET.length / 2) {
         asciiCode += ROTATION_VALUE;
       } else {
         asciiCode -= ROTATION_VALUE;
