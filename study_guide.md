@@ -86,3 +86,73 @@ SPOT session with JD
             - Supply all additional non-supplied arguments
     - Method passing with fewer arguments than what you need in the future
 - Create list of legal/idiomatic naming conventions
+
+############
+
+SPOT session with Laren
+
+# Study Guide
+// Specific Topics of Interest
+// You should be able to clearly explain the following topics:
+
+// assignments and comparison
+// variable scope, especially how variables interact with function definitions and blocks
+// function scope
+// hoisting
+// primitive values, types and type conversions/coercions
+// object properties and mutation
+// understand the differences between loose and strict equality
+// how passing an argument into a function may or may not permanently change the value that a variable contains or points to
+// working with Strings, Arrays, and Objects. In particular, you should be thoroughly familiar with the basic Array iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and values in an Object as an Array.
+// understand that arrays are objects, and be able to determine whether you have an Array
+// variables as pointers
+// console.log vs return
+// truthiness: false and true vs. falsy and truthy
+// function definition and function invocation
+// function declarations, function expressions, and arrow functions
+// implicit return value of function invocations
+// first-class functions
+// partial function application
+// naming conventions (legal vs idiomatic)
+// pure functions and side effects
+// strict mode vs. sloppy mode
+// JavaScript syntactic sugar
+
+Strict vs Idiomatic
+
+function foo(condition) {
+  // var qux;
+  console.log(bar);
+
+  qux = 0.5772;
+
+  if (condition) {
+    var qux = 3.1415; 
+    console.log(qux);  
+  } else {
+    var bar = 24;  // 24
+
+    var xyzzy = function() {
+      var qux = 2.7183;
+      console.log(qux); // 2.718
+    };
+
+    console.log(qux); // .5772
+    console.log(xyzzy()); // undefined
+  }
+
+  qux = 42; 
+  console.log(qux); // 42 
+}
+
+Strict Mode vs Sloppy Mode
+- Prevents/Illiminate silent error
+- Checks naming conventions
+- "use strict"
+- Pragma
+- Classes and some module use automatically
+
+First Class Function
+// 1. assign to variable
+// 2. pass as an arg
+// 3. return it
