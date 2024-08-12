@@ -156,3 +156,15 @@ First Class Function
 // 1. assign to variable
 // 2. pass as an arg
 // 3. return it
+
+####################
+
+- Side Effects:
+    - Reassigns non-local variable
+    - mutates the values of a non-local variable
+    - Reads/writes any non-local program data
+    - Raises an exception
+    - Calls another function that has side effects
+- Pure Functions:
+    - No side effects
+    - Same return for the same argument every time over its lifetime
