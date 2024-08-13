@@ -168,3 +168,17 @@ First Class Function
 - Pure Functions:
     - No side effects
     - Same return for the same argument every time over its lifetime
+
+20 questions, 3 hrs
+
+```js
+function greeting(personName) {
+  return function(say) {
+    console.log(`${say} ${personName}`);
+  }
+}
+
+let greetDerek = greeting('Derek');
+
+greetDerek('hello');
+```
