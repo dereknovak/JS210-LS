@@ -25,6 +25,28 @@
 - strict mode vs. sloppy mode
 - JavaScript syntactic sugar
 
+# Primitive Values
+
+- string
+- number
+- boolean
+- undefined
+- null
+- symbols (ES6)
+- Big Integers (ES9)
+
+# Objects
+
+- simple object
+- array
+- function
+- custom object
+
+# Naming Conventions
+
+- Legal
+- Idiomatic
+
 # Function Declaration vs Expression
 
 
@@ -101,3 +123,13 @@ let sayGoodbye = greetingGenerator('Goodbye');
 sayHello('Derek');
 sayGoodbye('Josh');
 ```
+
+# Strict Mode
+- https://launchschool.com/gists/406ba491
+
+- Can only be used at the top of a program or a function, not within a block.
+- Automatically is used within the body of a `class`.
+- Lexically scoped
+
+## Pragma
+- "The `"use strict"` statement is an example of a **pragma**, a language construct that tells a compiler, interpreter, or other translator to process the code in a different way.
