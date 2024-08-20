@@ -1,3 +1,23 @@
+# JS210 'Fundamentals of JavaScript' Study Guide
+
+## Navigation
+
+- [JavaScript Language](#general-terminology)
+    - [SQL](#sql-structured-query-language)
+    - [Relational Database](#relational-database)
+- [Primitive Values](#primitive-values)
+- [Objects](#objects)
+- [Naming Conventions](#naming-conventions)
+    - [Legal](#legal)
+    - [Idiomatic](#idiomatic)
+- [Expressions vs Statements]
+- [Hoisting](#hoisting)
+    - [Temporal Dead Zone](#temporal-dead-zone)
+- [Partial Function Application](#partial-function-application)
+- 
+
+
+
 # Study Guide
 - Specific Topics of Interest
 - You should be able to clearly explain the following topics:
@@ -35,6 +55,10 @@
 - symbols (ES6)
 - Big Integers (ES9)
 
+- Primitive Values are:
+    - Immutable
+    - Cannot be referenced by multiple variables
+
 # Objects
 
 - simple object
@@ -42,10 +66,84 @@
 - function
 - custom object
 
+- Objects are:
+    - Mutable
+    - Are a reference data
+
 # Naming Conventions
 
-- Legal
-- Idiomatic
+## Legal
+- https://launchschool.com/lessons/7377ece4/assignments/4a43f341
+
+- Case-sensitive
+- Any length
+- Start with a unicode letter, an underscore, or a dollar sign
+- Succeeding characters must be unicode letters, numbers, dollar signs, or underscores
+- Cannot be a reserved word
+    - https://262.ecma-international.org/5.1/#sec-7.6.1.1
+
+Legal:
+
+```
+_count
+$price
+value
+my_variable
+otherVariable
+```
+
+Illegal:
+
+```
+1count
+my#variable
+```
+
+## Idiomatic
+
+### Non-constant Variables
+
+- Use camelCase
+- Start with a letter
+
+Examples:
+- `employee`
+- `number`
+- `fizzBuzz`
+- `speedOfLight`
+- `destinationURL` (`URL` is an acronym)
+- `m00n`
+
+### Constructor Variables
+
+- Use PascalCase
+- Start with a letter
+
+Examples:
+- `Cat`
+- `BoxTurtle`
+- `FlightlessBird`
+
+### Magic Constant Variables
+
+- All UPPERCASE
+- Words separated by `_`.
+
+Examples:
+- `TODAY`
+- `MINIMUM_AGE`
+
+### Other Constants
+
+- Depending on context and local styles, can use all styles
+
+Examples:
+- `employeeOfMonth`
+- `HairyCat`
+- `ABSOLUTE_PATH`
+  
+# Statements vs Expressions
+
 
 # Function Declaration vs Expression
 
