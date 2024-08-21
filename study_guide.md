@@ -5,12 +5,34 @@
 - [JavaScript Language](#general-terminology)
     - [SQL](#sql-structured-query-language)
     - [Relational Database](#relational-database)
-- [Primitive Values](#primitive-values)
-- [Objects](#objects)
+- [Data Types](#data-types)
+    - [Primitive Values](#primitive-values)
+    - [Reference Objects](#reference-objects)
 - [Naming Conventions](#naming-conventions)
     - [Legal](#legal)
     - [Idiomatic](#idiomatic)
-- [Expressions vs Statements]
+- [Variable Scope](#variable-scope)
+    - [Lexical Scope](#lexical-scope)
+    - [Block-Level](#block-level)
+    - [Function-Level](#function-level)
+- [Statements vs Expressions](#statements-vs-expressions)
+    - [Statement](#statement)
+    - [Expression](#expression)
+- [Assignment vs Comparison](#assignment-vs-comparison)
+    - [Assignment](#assignment)
+- [Equality](#equality)
+    - [Strict](#strict-equality)
+    - [Loose](#loose-equality)
+- [Truthiness]
+- [Functions](#functions)
+    - [Arguments vs Parameters](#arguments-vs-parameters)
+    - [Return Value](#return-value)
+    - [Declaration vs Expression](#declaration-vs-expression)
+    - [Object Passing](#object-passing)
+    - [Static vs Instance]
+- [Operators](#operators)
+    - [`+`](#plus-)
+- [Objects](#objects)
 - [Hoisting](#hoisting)
     - [Temporal Dead Zone](#temporal-dead-zone)
 - [Partial Function Application](#partial-function-application)
@@ -22,53 +44,50 @@
 - Specific Topics of Interest
 - You should be able to clearly explain the following topics:
 
-- assignments and comparison
-- variable scope, especially how variables interact with function definitions and blocks
-- function scope
-- hoisting
-- primitive values, types and type conversions/coercions
-- object properties and mutation
-- understand the differences between loose and strict equality
-- how passing an argument into a function may or may not permanently change the value that a variable contains - points to
-- working with Strings, Arrays, and Objects. In particular, you should be thoroughly familiar with the basic - ay iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and - ues in an Object as an Array.
-- understand that arrays are objects, and be able to determine whether you have an Array
-- variables as pointers
-- console.log vs return
-- truthiness: false and true vs. falsy and truthy
-- function definition and function invocation
-- function declarations, function expressions, and arrow functions
-- implicit return value of function invocations
-- first-class functions
-- partial function application
-- naming conventions (legal vs idiomatic)
-- pure functions and side effects
-- strict mode vs. sloppy mode
-- JavaScript syntactic sugar
+    - assignments and comparison
+    - primitive values, types and type conversions/coercions
+    - object properties and mutation
+    - working with Strings, Arrays, and Objects. In particular, you should be thoroughly familiar with the basic - ay iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and - ues in an Object as an Array.
+    - understand that arrays are objects, and be able to determine whether you have an Array
+    - variables as pointers
+    - truthiness: false and true vs. falsy and truthy
+    - first-class functions
+    - pure functions and side effects
+    - strict mode vs. sloppy mode
+    - JavaScript syntactic sugar
 
-# Primitive Values
+# Data Types
 
-- string
-- number
-- boolean
-- undefined
-- null
-- symbols (ES6)
-- Big Integers (ES9)
+## Primitive Values
 
-- Primitive Values are:
-    - Immutable
+```js
+'string'           // string
+42                 // number
+true               // boolean
+undefined          // undefined
+null               // null
+Symbol('foo')      // symbol (ES6)
+9007199254740992n  // bigint (ES9)
+```
+
+Primitive Values are:
+- Immutable
+- Are a value type
     - Cannot be referenced by multiple variables
 
-# Objects
+## Reference Objects
 
-- simple object
-- array
-- function
-- custom object
+```js
+{ a: 1, b: 2 }     // simple object
+[1, 2, 3]          // array
+function foo() {}  // function
+new String('foo')  // custom object 
+```
 
-- Objects are:
-    - Mutable
-    - Are a reference data
+Objects are:
+- Mutable
+- Are a reference type
+    - A copy of the reference is shared between variables
 
 # Naming Conventions
 
@@ -141,12 +160,279 @@ Examples:
 - `employeeOfMonth`
 - `HairyCat`
 - `ABSOLUTE_PATH`
+
+# Variable Scope
+- https://launchschool.com/lessons/7cd4abf4/assignments/0b1349b7
+
+## Lexical Scope
+- "The source code defines the scope."
+- A variable's scope is **lexical**, being determined by the environment in which it is declared.
+
+## Block-Level
+
+- Variables declared with `let` or `const` are scoped at the *block-level*, which makes them accessible between the `{}` where they are declared. If declared in the program's main scope, the variables are considered **global** and can be accessed throughout the entire program.
+
+```js
+let foo = "I'm a global variable"
+
+if (true) {
+  console.log(foo)  // Outputs
+  let bar = "I'm scoped within this block"
+}
+
+console.log(bar)  // Throws a `ReferenceError` exception
+```
+
+## Function-Level
+
+- Variables declared with `var` and function declarations are scoped at the *function-level*, which makes them accessible within the function where they are defined. If declared in the program's main scope, the varaibles are considered **global** and can be accessed throughout the entire program.
+
+`var`
+```js
+function foo() {
+  if (true) {
+    var test = 'Successful';
+  }
+
+  console.log(test)  // Outputs
+}
+
+foo();
+```
+
+`function`
+```js
+function foo() {
+  if (true) {
+    function bar() {
+      console.log('Test successful');
+    }
+  }
+
+  bar();  // Outputs
+}
+
+foo();
+```
   
 # Statements vs Expressions
 
+## Statement
 
-# Function Declaration vs Expression
+- A **statement** is a string of executable code that uses specific JavaScript keywords. While a statement can include multiple expressions, the statement itself does not capture a value.
 
+- Complete list of statements: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements
+
+```js
+let foo = 'foo';  // statement
+
+console.log(foo = 'foo');      // Outputs 'bar'
+console.log(let foo = 'foo');  // Throws a `SyntaxError` exception
+```
+
+## Expression
+
+- An **expression** is any executable code that returns a value.
+
+```js
+1 + 1 === 2   // expression
+'a' + 'b'     // expression
+firstWord     // expression (returns its value)
+```
+
+# Functions
+- https://launchschool.com/lessons/7cd4abf4/assignments/067955f4
+
+- A **function** is a block of code that is saved and can be and called from another part of the program. In JavaScript, functions are *first-class objects*, allowing them to be easily passed around throughout the codebase.
+
+## Arguments vs Parameters
+
+- Function **arguments** are values that get passed into a function invocation. These values are then bound to the functions's **parameters**, which are defined variables that act as placeholders for variables used within the function. Both are assigned within parentheses; however, arguments exist at the function invocation while parameters exist at the function definition.
+
+```js
+function add(num1, num2) {  // parameters
+  return num1 + num2;
+}
+
+add(7, 3);  // arguments
+```
+
+## Return Value
+
+- Every function in JavaScript returns `undefined` by default; however, an explicit value can be returned from the function using the `return` keyword, immediately terminating the function and returning its argumented value.
+
+```js
+function foo() {
+  console.log('I will output!');
+  return 'bar';
+  console.log('I will not!');
+}
+
+let returnedValue = foo();
+returnedValue;  // 'bar'
+```
+
+## Declaration vs Expression
+
+- Functions can either be defined using a function **declaration** or an **expression**.
+
+### Declaration
+
+- A **function declaration** defines a function using the `function` keyword, declaring a named variable and initializing it to the referenced function. Only functions that are declared with `function` and have *no preceding characters* are considered a declaration.
+
+```js
+function foo() {
+  console.log("I've been declared!");
+
+  function bar() {
+    console.log("Me too!");
+  }
+}
+```
+
+### Expression
+
+- Any function that is not a function declaration is considered a **function expression**. These can include anonymous functions as well as those built using *arrow notation*.
+
+```js
+let foo = function() {
+  console.log("I've been expressed!");
+}
+
+let bar = () => {
+  console.log("Me too!");
+}
+```
+
+## Object Passing
+
+### Pass-by-Value
+
+- When passing a primitive value into a function, JavaScript exhibits a **pass-by-value** object passing strategy by passing a *copy* of the original value into the function, preventing it from being mutated.
+
+```js
+function capitalize(string) {
+  string[0] = string[0].toUpperCase;
+}
+
+let foo = 'foo';
+capitalize(foo);
+
+foo;  // foo
+```
+
+### Pass-by-Reference
+
+- When passing an object into a function, JavaScript exhibits a **pass-by-reference** object passing strategy by passing a copy of the *reference* to the original object into the function, allowing it to be mutated.
+
+```js
+function removeLastElement(array) {
+  array.pop();
+}
+
+let arr = ['a', 'b', 'c'];
+removeLastElement(arr);
+
+arr;  // ['a', 'b']
+```
+
+# Assignment vs Comparison
+
+## Assignment
+
+- JavaScript uses the `=` operator to assign a reference to a value or object, either as an initialization or a reassignment.
+
+### Primitive Values
+
+- When assigning a value referenced by a variable to another variable, a *copy* of the value is created, to which the new variable will reference.
+
+```js
+let a = 'hello';
+let b = a;
+```
+
+Here, `a` and `b` reference two *different* strings with the same value of `'hello'`.
+
+### Reference Objects
+
+- When assigning an object referenced by a variable to another variable, a *copy of the reference* to the object is created, to which the new variable will use. This allows the original object to be mutated using the new variable.
+
+```js
+let a = ['a', 'b', 'c'];
+let b = a;
+```
+
+Here, `a` and `b` reference the *same* array using two different references.
+
+## Comparison
+
+### Strict Equality
+
+- The **strict equality operator** (`===`) is best used when comparing values as both the literal's data and type are compared.
+
+```js
+5 === 5    // true
+5 === '5'  // false
+
+0 === 0    // true
+0 === ''   // false
+```
+
+### Loose Equality
+
+- The **loose equality operator** (`==`) compares its operands data, but not its type. This can lead to unexpected results and should be avoided, even if the program is working as intended.
+
+```js
+5 == 5;    // true
+5 == '5';  // true
+
+0 == 0;    // true
+0 == '';   // true
+```
+
+# Operators
+
+## Plus (+)
+
+- The `+` operator acts as both an addition and concatenation operator. When used with numbers, JavaScript will return the sum of the operands. When used with strings, JavaScript will return a new string with its operands concatenated.
+
+```js
+7 + 3;            // 10
+'Fizz' + 'Buzz';  // FizzBuzz 
+```
+
+- If one of the operands is a string, the other operand will be *implicitly coerced* into a string, defaulting to concatenation. To avoid unexpected results, it's important to always be explicit with coercions.
+
+```js
+7 + '3';   // 73
+['a', 'b'] + 'c';  // a,bc
+```
+
+- The `+` should never be used with objects, as the results can be unexpected.
+
+```js
+[1, 2, 3] + [4, 5, 6];   // 1,2,34,5,6
+[1, 2, 3] + 1            // 1,2,31
+```
+
+# Objects
+
+- **Objects** are used to organize data and behaviors, defining properties as key-value pairs than can be called using either dot or bracket notation.
+
+```js
+const dog = {
+  name: 'Fido',
+  age: 8,
+
+  speak() {
+    console.log('Arf!');
+  },
+}
+
+dog['name'];  // Fido
+dog.age;      // 8
+dog.speak();  // Logs 'Arf!'
+```
 
 
 # Hoisting
