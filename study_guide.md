@@ -20,10 +20,13 @@
     - [Expression](#expression)
 - [Assignment vs Comparison](#assignment-vs-comparison)
     - [Assignment](#assignment)
-- [Equality](#equality)
-    - [Strict](#strict-equality)
-    - [Loose](#loose-equality)
+    - [Comparison](#comparison)
+        - [Strict](#strict-equality)
+        - [Loose](#loose-equality)
+        - [Inequality]
 - [Truthiness]
+    - [Falsy Values](#falsy-values)
+    - [Nullish Coalescing Operator](#nullish-coalescing-operator)
 - [Functions](#functions)
     - [Arguments vs Parameters](#arguments-vs-parameters)
     - [Return Value](#return-value)
@@ -36,25 +39,23 @@
 - [Hoisting](#hoisting)
     - [Temporal Dead Zone](#temporal-dead-zone)
 - [Partial Function Application](#partial-function-application)
-- 
+- [Strict Mode](#strict-mode)
+    - [Pragma](#pragma)
 
 
 
 # Study Guide
-- Specific Topics of Interest
-- You should be able to clearly explain the following topics:
 
-    - assignments and comparison
-    - primitive values, types and type conversions/coercions
-    - object properties and mutation
-    - working with Strings, Arrays, and Objects. In particular, you should be thoroughly familiar with the basic - ay iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and - ues in an Object as an Array.
-    - understand that arrays are objects, and be able to determine whether you have an Array
-    - variables as pointers
-    - truthiness: false and true vs. falsy and truthy
-    - first-class functions
-    - pure functions and side effects
-    - strict mode vs. sloppy mode
-    - JavaScript syntactic sugar
+- primitive values, types and type conversions/coercions
+- object properties and mutation
+- working with Strings, Arrays, and Objects. In particular, you should be thoroughly familiar with the basic - ay iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and - ues in an Object as an Array.
+- understand that arrays are objects, and be able to determine whether you have an Array
+- Partial Function Apllication
+- variables as pointers
+- first-class functions
+- pure functions and side effects
+- strict mode vs. sloppy mode
+- JavaScript syntactic sugar
 
 # Data Types
 
@@ -240,6 +241,42 @@ console.log(let foo = 'foo');  // Throws a `SyntaxError` exception
 firstWord     // expression (returns its value)
 ```
 
+# Truthiness
+- https://launchschool.com/books/javascript/read/flow_control#truthiness
+
+## Falsy Values
+
+```js
+false
+undefined
+null
+NaN
+''
+0
+```
+
+- Everything else is considered *truthy*
+
+Notable truthy values:
+
+```js
+'false'  // A string
+[]       // Empty array is a construct
+{}       // Empty object is a construct 
+```
+
+## Nullish Coalescing Operator
+
+- The **nullish coalescing operator** evalutates its right operand if the left operand is *nullish* (`null` or `undefined`). This is different than the `||` logical operator, which checks for a *falsy* value instead.
+
+```js
+let array = ['a', 'b', 'c'];
+
+array[3] ?? "Element not present!";
+```
+
+Here, `'Element not present!'` is returned as the requested index of `array` does not exist.
+
 # Functions
 - https://launchschool.com/lessons/7cd4abf4/assignments/067955f4
 
@@ -390,6 +427,19 @@ Here, `a` and `b` reference the *same* array using two different references.
 0 == '';   // true
 ```
 
+### Inequality
+
+- Numbers are compared in a predictable way. For strings, each character is compared one at a time until an inequality is found, or one string ends before the other, to which the longer string will be considered greater.
+
+```js
+123 > 45        // true
+'123' > '45'    // false
+'123' > '1234'  // false
+```
+
+- The second example returns `false` because `'1'` and `'4'` are compared first, which evaluates to `false`.
+- The third example returns `false` because, after all characters are checked, the value's length is compared, with the longer string being considered greater.
+
 # Operators
 
 ## Plus (+)
@@ -437,7 +487,7 @@ dog.speak();  // Logs 'Arf!'
 
 # Hoisting
 
-- Hoisting is a mechanism that brings variable, function, and class declarations to the top of their respective scope before a program is executed.
+- **Hoisting** is a mechanism that brings variable, function, and class declarations to the top of their respective scope before a program is executed. While this feature does not actually change the code, but is instead a result of the program's *creation phase*, it's a great mental model to help understand why JavaScript executes code in this unusual manner.
 
 ```js
 greet('Hello');
@@ -511,9 +561,23 @@ sayGoodbye('Josh');
 # Strict Mode
 - https://launchschool.com/gists/406ba491
 
+- **Strict Mode** enables a stricter version of JavaScript to execute in specific locations within the codebase. This feature is prompted by the `"use strict"` pragma at the top of its respective environment, throwing additional exceptions for errors that would be otherwise ignored, and is lexically scoped at the *function-level*.
+
 - Can only be used at the top of a program or a function, not within a block.
 - Automatically is used within the body of a `class`.
 - Lexically scoped
+
+```js
+function foo() {
+  "use strict";
+  // Some code
+}
+
+num = 1
+foo();
+```
+
+In this example, **strict mode** is only enabled within the `foo` function body. Because of this, the variable assignment on line 6 does not throw an exception despite it not being declared.
 
 ## Pragma
 - "The `"use strict"` statement is an example of a **pragma**, a language construct that tells a compiler, interpreter, or other translator to process the code in a different way.
