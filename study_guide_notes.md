@@ -71,6 +71,7 @@
 - When referencing with `myOtherWord = myWord`, both variables point to an object of the same value **but not the same object**
 - Look up *reference type* (question 3)
     - https://launchschool.com/lessons/7cd4abf4/assignments/23776776
+- Sparse arrays have empty slots
 
 ##########################
 
@@ -184,3 +185,11 @@ greetDerek('hello');
 ```
 
 ^^^ NOT PFA
+
+########## Similar Methods
+
+`Array#any?` => `Array.prototype.some()`
+`Array#all?` => `Array.prototype.every()`
+`Array#include?` => `Array.prototype.includes()`
+
+`.call`

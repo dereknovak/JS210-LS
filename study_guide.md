@@ -23,8 +23,8 @@
     - [Comparison](#comparison)
         - [Strict](#strict-equality)
         - [Loose](#loose-equality)
-        - [Inequality]
-- [Truthiness]
+        - [Inequality](#inequality)
+- [Truthiness](#truthiness)
     - [Falsy Values](#falsy-values)
     - [Nullish Coalescing Operator](#nullish-coalescing-operator)
 - [Functions](#functions)
@@ -39,6 +39,8 @@
 - [Hoisting](#hoisting)
     - [Temporal Dead Zone](#temporal-dead-zone)
 - [Partial Function Application](#partial-function-application)
+- [Side Effects](#side-effects)
+    - [Pure Functions](#pure-functions)
 - [Strict Mode](#strict-mode)
     - [Pragma](#pragma)
 
@@ -50,11 +52,9 @@
 - object properties and mutation
 - working with Strings, Arrays, and Objects. In particular, you should be thoroughly familiar with the basic - ay iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and - ues in an Object as an Array.
 - understand that arrays are objects, and be able to determine whether you have an Array
-- Partial Function Apllication
 - variables as pointers
 - first-class functions
 - pure functions and side effects
-- strict mode vs. sloppy mode
 - JavaScript syntactic sugar
 
 # Data Types
@@ -174,14 +174,14 @@ Examples:
 - Variables declared with `let` or `const` are scoped at the *block-level*, which makes them accessible between the `{}` where they are declared. If declared in the program's main scope, the variables are considered **global** and can be accessed throughout the entire program.
 
 ```js
-let foo = "I'm a global variable"
+let foo = "I'm a global variable";
 
 if (true) {
-  console.log(foo)  // Outputs
-  let bar = "I'm scoped within this block"
+  console.log(foo);  // Outputs
+  let bar = "I'm scoped within this block";
 }
 
-console.log(bar)  // Throws a `ReferenceError` exception
+console.log(bar);  // Throws a `ReferenceError` exception
 ```
 
 ## Function-Level
@@ -195,7 +195,7 @@ function foo() {
     var test = 'Successful';
   }
 
-  console.log(test)  // Outputs
+  console.log(test);  // Outputs
 }
 
 foo();
@@ -537,6 +537,8 @@ var greeting = 'hello';
 
 https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745
 
+- **Partial Function Application** is the process in which a function is defined that calls a second function, accepting less arguments than that function expects. This is achieved through the use of pre-determined values to use as the remaining arguments upon invocation of the partial function.
+
 - "Partial function application refers to the creation of a function that can call a second function with fewer arguments than the second function expects."
 - "Partial function application requires a reduction in the number of arguments you have to provide when you call a function."
 
@@ -558,6 +560,49 @@ sayHello('Derek');
 sayGoodbye('Josh');
 ```
 
+# Side Effects
+https://launchschool.com/lessons/79b41804/assignments/88138dd5
+
+1. A non-local variable is reassigned
+
+```js
+function addTen() {
+  num + 10;
+}
+
+let num = 7;
+addTen();
+```
+
+2. A non-local variable is mutated
+
+```js
+function reverseNumbers(numbers) {
+  numbers.reverse();
+}
+
+let arr = [1, 2, 3];
+reverseNumbers(arr);
+```
+
+3. A non-local data entity is read or written to
+
+```js
+function greet(greeting, name) {
+  console.log(greeting + ', ' + name);
+}
+
+greet('Hello', 'John');
+```
+
+4. An exception is raised
+5. A different function is called with side-effects
+
+## Pure Functions
+
+1. Does not have any side effects
+2. Same return for the same argument every time over its lifetime
+
 # Strict Mode
 - https://launchschool.com/gists/406ba491
 
@@ -573,7 +618,7 @@ function foo() {
   // Some code
 }
 
-num = 1
+num = 1;
 foo();
 ```
 
