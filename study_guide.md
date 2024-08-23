@@ -33,12 +33,14 @@
     - [Declaration vs Expression](#declaration-vs-expression)
     - [Object Passing](#object-passing)
     - [Static vs Instance]
+    - [First Class Functions](#first-class-function)
 - [Operators](#operators)
     - [`+`](#plus-)
 - [Objects](#objects)
 - [Hoisting](#hoisting)
     - [Temporal Dead Zone](#temporal-dead-zone)
 - [Partial Function Application](#partial-function-application)
+- [First-Class Functions]
 - [Side Effects](#side-effects)
     - [Pure Functions](#pure-functions)
 - [Strict Mode](#strict-mode)
@@ -54,7 +56,6 @@
 - understand that arrays are objects, and be able to determine whether you have an Array
 - variables as pointers
 - first-class functions
-- pure functions and side effects
 - JavaScript syntactic sugar
 
 # Data Types
@@ -373,6 +374,48 @@ removeLastElement(arr);
 arr;  // ['a', 'b']
 ```
 
+## Static vs Instance
+
+### Static
+
+- A **static method** is called directly on the class, producing different results based upon the method's argument.
+
+```js
+let dog = {
+  name: 'Fido',
+  age: 7,
+}
+
+Object.keys(dog);  // [ 'name', 'age' ]
+```
+
+### Instance
+
+- An **instance method** is called on the object, or instance, of a class. Most methods in JavaScript fall into this category.
+
+```js
+'hello world'.toUpperCase();
+['a', 'b', 'c'].reverse();
+```
+
+## First Class Function
+
+1. Assign it to a variable
+2. Pass it as an argument
+3. Return it from a function
+
+```js
+function add(num1, num2) {
+  return num1 + num2;
+}
+
+function makeAdder(num1) {
+  return function(num2) {
+    return add(num1, num2);
+  }
+}
+```
+
 # Assignment vs Comparison
 
 ## Assignment
@@ -602,6 +645,25 @@ greet('Hello', 'John');
 
 1. Does not have any side effects
 2. Same return for the same argument every time over its lifetime
+
+Good:
+```js
+function add(num1, num2) {
+  return num1 + num2;
+}
+
+add(4, 7);  // Will always return the same result
+```
+
+Bad:
+```js
+function add(num2) {
+  return num1 + num2
+}
+
+let num1 = 7;
+add(4);  // `num1` could be any number, so the return may be different
+```
 
 # Strict Mode
 - https://launchschool.com/gists/406ba491
