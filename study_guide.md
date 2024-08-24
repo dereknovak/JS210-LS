@@ -8,6 +8,7 @@
 - [Data Types](#data-types)
     - [Primitive Values](#primitive-values)
     - [Reference Objects](#reference-objects)
+    - [typeof](#typeof)
 - [Naming Conventions](#naming-conventions)
     - [Legal](#legal)
     - [Idiomatic](#idiomatic)
@@ -18,6 +19,9 @@
 - [Statements vs Expressions](#statements-vs-expressions)
     - [Statement](#statement)
     - [Expression](#expression)
+- [Coercion](#coercion)
+    - [Explicit Coercion](#explicit-coercion)
+    - [Implicit Coercion](#implicit-coercion)
 - [Assignment vs Comparison](#assignment-vs-comparison)
     - [Assignment](#assignment)
     - [Comparison](#comparison)
@@ -32,31 +36,33 @@
     - [Return Value](#return-value)
     - [Declaration vs Expression](#declaration-vs-expression)
     - [Object Passing](#object-passing)
-    - [Static vs Instance]
-    - [First Class Functions](#first-class-function)
+    - [Static vs Instance](#static-vs-instance)
+    - [First-Class Objects](#first-class-objects)
+    - [Spread Syntax](#spread-syntax)
+    - [Rest Syntax](#rest-syntax)
+    - [arguments](#arguments)
 - [Operators](#operators)
     - [`+`](#plus-)
 - [Objects](#objects)
+    - [Properties](#properties)
+    - [Arrays](#arrays)
+        - [Sparse Arrays](#sparse-arrays)
+    - [Iteration]
+        - [Array]
+        - [Object]
 - [Hoisting](#hoisting)
     - [Temporal Dead Zone](#temporal-dead-zone)
 - [Partial Function Application](#partial-function-application)
-- [First-Class Functions]
 - [Side Effects](#side-effects)
     - [Pure Functions](#pure-functions)
 - [Strict Mode](#strict-mode)
     - [Pragma](#pragma)
-
-
+- [Syntactic Sugar](#syntactic-sugar)
 
 # Study Guide
 
-- primitive values, types and type conversions/coercions
-- object properties and mutation
 - working with Strings, Arrays, and Objects. In particular, you should be thoroughly familiar with the basic - ay iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and - ues in an Object as an Array.
-- understand that arrays are objects, and be able to determine whether you have an Array
 - variables as pointers
-- first-class functions
-- JavaScript syntactic sugar
 
 # Data Types
 
@@ -90,6 +96,33 @@ Objects are:
 - Mutable
 - Are a reference type
     - A copy of the reference is shared between variables
+
+## typeof
+
+- A data type can be checked using the `typeof` operator alongside the data literal. This returns a string representation of the data type.
+
+```js
+typeof 24;             // 'number'
+typeof 'Dog';          // 'string'
+typeof false;          // 'boolean'
+typeof {};             // 'object'
+typeof undefined;      // 'undefined'
+typeof function() {};  // 'function'
+
+
+// Unexpected Behavior
+
+typeof [];             // 'object'
+typeof null;           // 'object'
+typeof NaN;            // 'number'
+```
+
+- For arrays, `Object.isArray()` can be used to check its object type.
+
+```js
+Object.isArray([1, 2, 3]);       // true
+Object.isArray({ a: 1, b: 2 });  // false
+```
 
 # Naming Conventions
 
@@ -398,9 +431,10 @@ Object.keys(dog);  // [ 'name', 'age' ]
 ['a', 'b', 'c'].reverse();
 ```
 
-## First Class Function
+## First-Class Objects
+https://launchschool.com/lessons/7cd4abf4/assignments/0ea7c745
 
-1. Assign it to a variable
+1. Assign it to a variable or an element of a data structure
 2. Pass it as an argument
 3. Return it from a function
 
@@ -414,6 +448,45 @@ function makeAdder(num1) {
     return add(num1, num2);
   }
 }
+```
+
+# Coercion
+
+## Explicit Coercion
+
+- When comparing different primitive values, the values should be **explicitly coerced** to the appropriate data type as relying on JavaScript's *implicit coercion* can be both unreliable and may make the code more challenging to debug.
+
+### To String
+
+```js
+String(24);              // '24'
+String([1, 2, 3]);       // '1,2,3'
+String({ a: 1, b: 2 });  // '[object Object]'
+String(false);           // 'false
+```
+
+## To Number
+
+```js
+Number('24');      // 24
+Number('hello');   // NaN
+Number('1hello');  // NaN
+Number(false);     // 0
+
+parseInt('24');      // 24
+parseInt('hello');   // NaN
+parseInt('1hello');  // 1
+parseInt(false);     // NaN
+```
+
+## Implicit Coercion
+
+- Many of the operators in JavaScript, when used with different operand data types, will **implicitly coerce** one of the values so to not throw an exception. Relying on such coercion, however, is not recommended, as it can be both unreliable and may make the code more challenging to debug.
+
+```js
+1 + '2' === '12'        // `1` is coerced to a string
+0 == false === true     // `false` is coerced to `0`
+10 / true === Infinity  // `true` is coerced to `1`
 ```
 
 # Assignment vs Comparison
@@ -483,6 +556,44 @@ Here, `a` and `b` reference the *same* array using two different references.
 - The second example returns `false` because `'1'` and `'4'` are compared first, which evaluates to `false`.
 - The third example returns `false` because, after all characters are checked, the value's length is compared, with the longer string being considered greater.
 
+## Spread Syntax
+
+- When an unknown amount of arguments are passed into a function invocation, JavaScripts **spread syntax** (`...variableName`) can be used to capture all argument values into an array.
+
+```js
+function add(...numbers) {
+  return numbers.reduce((acc, num) => acc + num, 0);
+}
+
+add(1, 2);        // 3
+add(1, 2, 3) ;    // 6
+add(1, 2, 3, 4);  // 10
+```
+
+- When used as a variable within the function, an array of all elements is returned. When used with the spread syntax, each element is returned delimited by a comma.
+
+## Rest Syntax
+
+```js
+let favorites = ['color', 'red', 'blue', 'green'];
+let [type, ...colors] = favorites;
+
+type;    // 'color'
+colors;  // ['red', 'blue', 'green']
+```
+
+## arguments
+
+- The `arguments` reserved variable references all arguments that have been passed into a function, regardless of any existing parameters. This referenced object is *array-like*, as values can be referenced using indexes; however, many core array behaviors, such as its basic instance methods, are missing that make it unreliable.
+
+```js
+function outputLength() {
+  console.log(arguments.length);
+}
+
+output('Hello', 'world');  // 2
+```
+
 # Operators
 
 ## Plus (+)
@@ -527,6 +638,37 @@ dog.age;      // 8
 dog.speak();  // Logs 'Arf!'
 ```
 
+## Properties
+
+- A **property** is a key-value pair existing within an object literal whose value can be called using either dot or bracket notation.
+
+See example above.
+
+## Arrays
+
+- An **array** is a data structure made up of an ordered collection of elements. Arrays can exist within other arrays, creating a *nested array*. In JavaScript, arrays are a sub-category of the `Object` class, providing additional functionality such as non-indexed properties and a dynamic length.
+
+```js
+let names = ['Bob', 'John', 'Tom'];
+names[1];  // 'John'
+
+names['1'] == 'Chuck';
+names;     // [ 'Bob', 'John', 'Tom', '-1': 'Chuck' ]
+```
+
+### Sparse Arrays
+
+- A **sparse array** is one that has *empty item* slots somewhere within it. Empty slots are created by either increasing the `'length'` property of an array or by setting an index outside of the range of the array.
+
+```js
+let colors = ['red', 'blue', 'yellow'];
+
+colors[5] = 'purple';
+console.log(colors);  // [ 'red', 'blue', 'yellow', <2 empty items>, 'purple' ]
+
+colors.length = 10;
+console.log(colors);  // [ 'red', 'blue', 'yellow', <2 empty items>, 'purple', <4 empty items> ]
+```
 
 # Hoisting
 
@@ -688,3 +830,70 @@ In this example, **strict mode** is only enabled within the `foo` function body.
 
 ## Pragma
 - "The `"use strict"` statement is an example of a **pragma**, a language construct that tells a compiler, interpreter, or other translator to process the code in a different way.
+
+# Syntactic Sugar
+https://launchschool.com/gists/2edcf7d7
+
+## Concise Property Initializers
+
+- To avoid repetition, JavaScript *syntactic sugar* allows for quick assignment of property key-value pairs by including only the variable name, returning the variable as the key and its referenced value as the value.
+
+```js
+function setObject(foo, bar, qux) {
+  return {
+    foo,
+    bar,
+    qux,
+  };
+}
+
+let var1 = 'foo';
+let var2 = 'bar';
+let var3 = 'qux';
+
+setObject(var1, var2, var3);
+// { foo: 'foo', bar: 'bar', qux: 'qux' }
+```
+
+## Concise Methods
+
+- To avoid clutter within an object, JavaScript *syntactic sugar** allows a function to simply be defined within the object without the need of a property key; the key uses the name of the function while its value is the function itself.
+
+```js
+let dog = {
+  name: 'Fido',
+  age: 7,
+
+  speak() {
+    console.log('Arf!');
+  },
+}
+
+dog.speak();  // Arf!
+```
+
+## Object Destructuring
+
+```js
+let dog = {
+  name: 'Fido',
+  breed: 'Collie',
+  age: 7,
+}
+
+let { name, breed, age: yearsOld } = dog;
+name;   // 'Fido'
+breed;  // 'Collie'
+yearsOld;    // 7
+```
+
+## Array Destructuring
+
+```js
+let colors = ['red', 'blue', 'green']
+let [ shirt, pants, shoes ] = colors;
+
+shirt;  // 'red'
+pants;  // 'blue'
+shoes;  // 'green'
+```
