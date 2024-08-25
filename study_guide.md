@@ -670,6 +670,69 @@ colors.length = 10;
 console.log(colors);  // [ 'red', 'blue', 'yellow', <2 empty items>, 'purple', <4 empty items> ]
 ```
 
+## Iteration
+
+### Objects
+
+```js
+const dog = {
+  name: 'Fido',
+  breed: 'Collie',
+  age: 7,
+}
+
+for (let prop in dog) {
+  console.log(`${prop}: ${dog[prop]}`);
+}
+
+// name: Fido
+// breed: Collie
+// age: 7
+```
+
+### Arrays
+
+```js
+let arr = ['red', 'blue', 'green'];
+
+arr.forEach(color => {
+  console.log(color);
+});
+// red
+// blue
+// green
+```
+
+```js
+let arr = ['red', 'blue', 'green'];
+
+let shortColors = arr.filter(color => {
+  return color.length < 4;
+});
+
+shortColors;  // ['red']
+```
+
+```js
+let arr = ['red', 'blue', 'green'];
+
+let colorLengths = arr.map(color => {
+  return color.length;
+});
+
+colorLengths;  // [3, 4, 5]
+```
+
+```js
+let arr = ['red', 'blue', 'green', 'black'];
+
+let colorWithB = arr.find(color => {
+  return color[0] === 'b';
+});
+
+colorWithB;  // 'blue';
+```
+
 # Hoisting
 
 - **Hoisting** is a mechanism that brings variable, function, and class declarations to the top of their respective scope before a program is executed. While this feature does not actually change the code, but is instead a result of the program's *creation phase*, it's a great mental model to help understand why JavaScript executes code in this unusual manner.
