@@ -193,3 +193,25 @@ greetDerek('hello');
 `Array#include?` => `Array.prototype.includes()`
 
 `.call`
+
+Today marks one year since launching my Software Engineering career!
+
+Here is what I've been able to accomplish:
+
+- Mastered the foundations of Ruby, including procedural and Object-Oriented programming, bindings and closures, testing, and the Sinatra framework.
+- Mastered the foundations of JavaScript, including procedural programming, hoisting, closures and partial function application, and Node.js.
+- Mastered the four pillars of Object-Oriented Programming, including abstraction, polymorphism, inheritance, and encapsulation.
+- Mastered the foundations of Networking, including the TCP/IP model, the HTTP request/response cycle, and the TLS/SSL handshake.
+- Mastered the foundations of SQL, including complex queries/statements, JOIN tables and sub-queries, 1:M and M:M relation cardinalities, and application through the PostgreSQL RDBMS.
+- Mastered the fundamentals of HTML and CSS, including forms, lists and tables, the Box Model, integration with ERB, and the ability to center a `div`.
+- Created a virtual storage tracking application from scratch, built from Sinatra and PostgreSQL with full CRUD capabilities, a fully-encrypted log-in experience, and an immersive UI.
+
+Some additional fun facts:
+
+- Current course: LS215
+- GitHub: 272 days of committed code
+- Student/TA/SPOT study sessions attended: 40
+- Weekly Studying: 16 hrs/week
+- Average Assessment Grade: 98.04% (12 total)
+
+I'm truly estatic with the progress that I've been able to make these past 365 days, and am incredibly grateful to those who have graciously aided me along the way. This next year will be an exciting one!
