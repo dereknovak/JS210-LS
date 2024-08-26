@@ -208,7 +208,7 @@ Here is what I've been able to accomplish:
 
 Some additional fun facts:
 
-- Current course: LS215
+- Current course: LS215 (Ruby Track)
 - GitHub: 272 days of committed code
 - Student/TA/SPOT study sessions attended: 40
 - Weekly Studying: 16 hrs/week
