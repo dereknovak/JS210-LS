@@ -47,9 +47,9 @@
     - [Properties](#properties)
     - [Arrays](#arrays)
         - [Sparse Arrays](#sparse-arrays)
-    - [Iteration]
-        - [Array]
-        - [Object]
+    - [Iteration](#iteration)
+        - [Object](#object)
+        - [Array](#array)
 - [Hoisting](#hoisting)
     - [Temporal Dead Zone](#temporal-dead-zone)
 - [Partial Function Application](#partial-function-application)
@@ -61,7 +61,6 @@
 
 # Study Guide
 
-- working with Strings, Arrays, and Objects. In particular, you should be thoroughly familiar with the basic - ay iteration methods (forEach, map, filter, and find) and how to use Object methods to access the keys and - ues in an Object as an Array.
 - variables as pointers
 
 # Data Types
@@ -672,7 +671,7 @@ console.log(colors);  // [ 'red', 'blue', 'yellow', <2 empty items>, 'purple', <
 
 ## Iteration
 
-### Objects
+### Object
 
 ```js
 const dog = {
@@ -690,7 +689,7 @@ for (let prop in dog) {
 // age: 7
 ```
 
-### Arrays
+### Array
 
 ```js
 let arr = ['red', 'blue', 'green'];
@@ -806,6 +805,20 @@ let sayGoodbye = greetingGenerator('Goodbye');
 
 sayHello('Derek');
 sayGoodbye('Josh');
+```
+
+## Closure
+
+- A **closure** is a combination of a function object and the surrounding artifacts that exist within the lexical scope of the function upon its defintion. This allows variables to be referenced by the function, even if they are not in scope at the point of invocation.
+
+```js
+function greet() {
+  let person = 'stranger';
+  return function() { console.log('Howdy, ' + person) };
+}
+
+let friendlyGreet = greet();
+friendlyGreet();  // Howdy, stranger
 ```
 
 # Side Effects
