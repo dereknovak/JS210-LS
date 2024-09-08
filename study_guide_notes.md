@@ -194,7 +194,7 @@ greetDerek('hello');
 
 `.call`
 
-Today marks one year since launching my Software Engineering career!
+Today marks one year since launching my career in Software Engineering!
 
 Here is what I've been able to accomplish:
 
